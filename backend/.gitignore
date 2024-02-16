@@ -1,0 +1,15 @@
+.DS_Store
+.thumbs.db
+node_modules
+
+/build/*
+/dist
+
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+.env
+*.spec
