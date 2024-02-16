@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "sendbatchmsg"
+version = "0.1.0"
+description = "A tool for loading csv file and sending batch message to specific accounts"
+authors = ["Allen Chen <wen900445@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+flask = "^3.0.2"
+flask-cors = "^4.0.0"
+requests = "^2.31.0"
+flake8 = "^7.0.0"
+autopep8 = "^2.0.4"
+pyinstaller = "^6.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
