@@ -6,8 +6,9 @@ export const useAppStatusStore = defineStore('AppStatus', () => {
 
   const mailFile = ref(null);
   const mails = ref([]);
+  const mailTableRef = ref(null);
 
-  const fieldCorrespond = ref({
+  const field2ColIndex = ref({
     uid: null,
     title: null,
     content: null,
@@ -15,6 +16,9 @@ export const useAppStatusStore = defineStore('AppStatus', () => {
   const selectedRows = ref([]);
 
   const isProcessing = ref(false);
+
+  const defaultPublicTime = ref('');
+  const publicTime = ref('');
   const displayModifyColDlg = ref(false);
   const displayModifyRowDlg = ref(false);
   const rowModifyType = ref('add');
@@ -23,9 +27,12 @@ export const useAppStatusStore = defineStore('AppStatus', () => {
     svrUrl,
     mailFile,
     mails,
-    fieldCorrespond,
+    mailTableRef,
+    field2ColIndex,
     selectedRows,
     isProcessing,
+    defaultPublicTime,
+    publicTime,
     displayModifyColDlg,
     displayModifyRowDlg,
     rowModifyType,

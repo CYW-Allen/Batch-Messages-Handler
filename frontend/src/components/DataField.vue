@@ -5,7 +5,7 @@
       @rejected="$q.notify({ message: 'Invalid file format' })" />
   </div>
 
-  <q-table v-else class="fit stickyHeader" :title="tableTitle" :columns="tableCols"
+  <q-table v-else ref="mailTable" class="fit stickyHeader" :title="tableTitle" :columns="tableCols"
     :rows="listAll ? appStatus.mails : appStatus.selectedRows" row-key="Index" virtual-scroll
     :pagination="{ rowsPerPage: 0 }" :rows-per-page-options="[0]" hide-bottom selection="multiple"
     :virtual-scroll-sticky-size-start="48" v-model:selected="appStatus.selectedRows" :filter="filter">
@@ -31,7 +31,7 @@
           <q-popup-edit v-if="col.name !== 'Index'" v-model="props.row[col.name]" v-slot="scope"
             :title="`Modify row ${props.rowIndex + 1}, column ${col.name}`" :validate="(val) => val !== ''" buttons
             label-set="Confirm" label-cancel="Cancel">
-            <q-input type="textarea" v-model="scope.value" autofocus ref="fieldModify"
+            <q-input type="textarea" v-model="scope.value" autofocus
               :rules="[(val) => val.length > 0 || '⚠ The value must not be empty']" />
           </q-popup-edit>
         </q-td>
@@ -44,12 +44,14 @@
 import { computed, ref, watch } from 'vue';
 import { useQuasar } from 'quasar';
 import papa from 'papaparse';
+import dayjs from 'dayjs';
 import { useAppStatusStore } from 'src/stores/appStatus';
 import ToggleBtn from './ToggleBtn.vue';
 
 const $q = useQuasar();
 const appStatus = useAppStatusStore();
 
+const mailTable = ref(null);
 const tableTitle = computed(() => (appStatus.mailFile ? appStatus.mailFile.name.split('.csv')[0] : ''));
 const tableCols = computed(() => (
   Object.keys(appStatus.mails[0] || {})
@@ -99,6 +101,11 @@ watch(() => appStatus.mailFile, (v) => {
     fileReader.addEventListener('load', () => {
       appStatus.mails = papa.parse(fileReader.result, { header: true, skipEmptyLines: true })
         .data.map((row, i) => ({ Index: i + 1, ...row }));
+
+      const defaultPublicTimeStr = dayjs().add(appStatus.mails.length, 'second').format('YYYY/MM/DD HH:mm:ss');
+
+      appStatus.defaultPublicTime = defaultPublicTimeStr;
+      appStatus.publicTime = defaultPublicTimeStr;
     });
     fileReader.readAsText(appStatus.mailFile);
   }
@@ -106,6 +113,14 @@ watch(() => appStatus.mailFile, (v) => {
 
 watch(() => appStatus.mails, (v) => {
   console.log('mails: ', v);
+});
+
+watch(mailTable, (v) => {
+  if (v) appStatus.mailTableRef = v;
+});
+
+watch(() => appStatus.selectedRows, (v) => {
+  console.log('selected rows:', v);
 });
 </script>
 
