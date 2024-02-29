@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="col-2 q-pa-sm">
-        <div class="fit" style="border: 1px solid purple;">Request handler field</div>
+        <mail-handler />
       </div>
     </div>
   </q-page>
@@ -19,6 +19,7 @@
 <script setup>
 import DataField from 'src/components/DataField.vue';
 import OperationField from 'src/components/OperationField.vue';
+import MailHandler from 'src/components/MailHandler.vue';
 
 function tweakPageH(offset) {
   return { height: offset ? `calc(100vh - ${offset}px)` : '100vh' };

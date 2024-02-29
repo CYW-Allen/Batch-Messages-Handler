@@ -10,6 +10,9 @@ from requests import post
 import json
 import re
 import signal
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def sig_app_terminate_handler(sig, frame):
@@ -21,7 +24,13 @@ signal.signal(signal.SIGINT, sig_app_terminate_handler)
 base_dir = '.'
 template_dir = '../frontend/dist/spa'
 static_dir = '../frontend/dist/spa/assets'
+
+token_api = os.getenv('TOKEN_API')
+message_api = os.getenv('MESSAGE_API')
+admin = os.getenv('ADMIN')
+password = os.getenv('PASSWORD')
 access_token = None
+
 
 if hasattr(sys, '_MEIPASS'):
     base_dir = os.path.join(sys._MEIPASS)
@@ -35,9 +44,9 @@ app = Flask(__name__, static_folder=static_dir, template_folder=template_dir)
 def get_token():
     token = None
     res = post(
-        app.config['TOKEN_URL'],
-        data={'username': app.config['ADMIN'],
-              'password': app.config['PASSWORD']},
+        token_api,
+        data={'username': admin,
+              'password': password},
         timeout=5
     )
     if res.status_code == 200:
@@ -65,7 +74,7 @@ def send_req():
         msg_info['scope_uid'][0] = re.sub(
             r"[^A-Za-z0-9]+", '', msg_info['scope_uid'][0])
         res = post(
-            app.config['MESSAGE_URL'],
+            message_api,
             headers={'Authorization': 'Token ' + access_token},
             json=msg_info,
         )
