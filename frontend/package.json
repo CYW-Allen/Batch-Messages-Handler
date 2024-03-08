@@ -17,12 +17,14 @@
     "papaparse": "^5.4.1",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
+    "socket.io-client": "^4.7.4",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.0.0",
     "autoprefixer": "^10.4.2",
+    "dotenv": "^16.4.5",
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.20.1",

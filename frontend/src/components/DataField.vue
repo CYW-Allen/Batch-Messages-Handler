@@ -111,16 +111,8 @@ watch(() => appStatus.mailFile, (v) => {
   }
 });
 
-watch(() => appStatus.mails, (v) => {
-  console.log('mails: ', v);
-});
-
 watch(mailTable, (v) => {
   if (v) appStatus.mailTableRef = v;
-});
-
-watch(() => appStatus.selectedRows, (v) => {
-  console.log('selected rows:', v);
 });
 </script>
 
