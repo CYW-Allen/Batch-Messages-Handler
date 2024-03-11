@@ -38,11 +38,12 @@
 
           <q-expansion-item ref="timeCfg" expand-separator group="cfg" class="text-h6" icon="fa-regular fa-clock"
             label="Config public time">
-            <div v-if="appStatus.mails.length" class="row no-wrap q-pa-md">
+            <div v-if="appStatus.mails.length" class="row q-gutter-sm wrap q-pa-md">
               <q-date class="col" v-model="appStatus.publicTime" mask="YYYY/MM/DD HH:mm:ss" :options="dateLimit"
-                color="green-7" />
-              <q-time class="col q-ml-sm" v-model="appStatus.publicTime" mask="YYYY/MM/DD HH:mm:ss" :options="timeLimit"
-                color="amber-9" :default-date="appStatus.defaultPublicTime.split(' ')[0]" format24h with-seconds />
+                color="green-7" style="min-width: 200px;" />
+              <q-time class="col" v-model="appStatus.publicTime" mask="YYYY/MM/DD HH:mm:ss" :options="timeLimit"
+                color="amber-9" style="min-width: 200px;" :default-date="appStatus.defaultPublicTime.split(' ')[0]"
+                format24h with-seconds />
             </div>
           </q-expansion-item>
 
