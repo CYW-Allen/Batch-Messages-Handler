@@ -13,7 +13,7 @@
   <h1 align="center">Batch Messages Handler</h1>
 
   <p align="center" style="font-size:16px">
-    A tool for handling messages stored in csv file
+    A tool for processing messages stored in csv file
     <br />
   </p>
 </div>
@@ -34,7 +34,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![frontpage](/about/screenshot.png)
+![frontpage](/about/screenshot.PNG)
 
 ### Backend API server
   This server offers two HTTP routes and a socket connection:
@@ -84,7 +84,7 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Note about building app
+## Note for building
 Here are the solutions when running the artifact built by `pyinstaller`
 * ValueError: Invalid async_mode specified
   * flask_server.spec: Add `engineio.async_drivers.threading` to the property `hiddenimports`.
@@ -128,7 +128,7 @@ Here are the solutions when running the artifact built by `pyinstaller`
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/screenshot.PNG
 
 [Vue-badge]: https://img.shields.io/badge/Vue-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
